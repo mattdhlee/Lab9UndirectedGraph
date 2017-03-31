@@ -75,7 +75,12 @@ class Graph
 
     public boolean IsCycle()
     {
-        //check each vertex, does it ahve 2 neighbors
+        //check first property: connectivity
+        if(!(IsConnected())){
+            return false;
+        }
+
+        //check second property: each vertex must have two vertices
         for(int i=0; i < vNum; i++) {
             System.out.println(vNum);
             System.out.println(Arrays.toString(adjList[i].toArray()));
