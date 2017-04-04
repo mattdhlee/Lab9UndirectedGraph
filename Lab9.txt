@@ -1,0 +1,27 @@
+
+
+1. Discuss the process of implementing
+2. Which mystery files are cycles and which aren't
+
+
+1. I decided to make helper function that performs the BFS and returns a boolean.
+The BFS function is used to check the connectivity of the graph.
+The function takes in a vertex. I made a queue using the LinkedList data structure
+and an array of booleans and a count.
+After adding the starting vertex to the queue, I go in a while loop and continue
+traverse through the graph while keeping count of the visited vertices.
+
+At the end I compare the count and the number of vertices in the graph to check
+the connectivity.
+
+The process of implementing, once I decided what data structure to use, was not
+too difficult. However, I had another loop in the IsConnected function,
+which was giving me errors for the bigger txt files.
+
+To check if the graph is a cycle, I call the IsConnected function to check connectivity
+and then check the second property (each vertex must have two vertices) by looping
+through each vertices and checking if it has two vertices linked to it.
+
+
+2. mystery150623.txt -> Is not a cycle. It is not connected.
+mystery314159.txt-> Is a cycle. 

@@ -31,18 +31,12 @@ class Graph
         if(!adjList[v].contains(u)){
             adjList[v].add(u);
         }
-        //TODO: think about why...
-        //adjList[v].add(u); // didn't have to do this... why...
     }
 
     public boolean IsConnected()
     {
-        System.out.println(adjList.length);
-
 
         if(BFS(0)){
-            System.out.println(0);
-            System.out.println("pass");
         }
         else {
             System.out.println("no");
@@ -51,21 +45,21 @@ class Graph
         return true;
     }
 
-    public boolean BFS (Integer vertice) {
+    public boolean BFS (Integer vertex) {
         LinkedList<Integer> queue = new LinkedList<Integer>();
         boolean[] visited = new boolean[adjList.length];
 
         //adding count,vertex,and boolean for the starting point.
         int count = 1;
-        int n; //next vertice in a list
-        queue.add(vertice);
-        visited[vertice] = true;
+        int n; //next vertex in a list
+        queue.add(vertex);
+        visited[vertex] = true;
 
 
         Iterator<Integer> iterator;
         while (!queue.isEmpty()) {
-            vertice = queue.remove();
-            iterator = adjList[vertice].iterator();
+            vertex = queue.remove();
+            iterator = adjList[vertex].iterator();
 
             while(iterator.hasNext()) {
                 n = iterator.next();
