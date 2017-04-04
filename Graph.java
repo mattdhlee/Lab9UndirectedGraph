@@ -25,42 +25,53 @@ class Graph
     public void AddEdge(int u, int v)
     {
         //add the edges both ways since we are working with undirected graphs.
-        adjList[u].add(v);
+        if(!adjList[u].contains(v)) {
+            adjList[u].add(v);
+        }
+        if(!adjList[v].contains(u)){
+            adjList[v].add(u);
+        }
         //TODO: think about why...
         //adjList[v].add(u); // didn't have to do this... why...
     }
 
     public boolean IsConnected()
-    {   
-        for(int i=0; i<adjList.length; i++) {
+    {
+        System.out.println(adjList.length);
 
-            if(BFS(i)){
-                System.out.println("pass");
-            }
-            else {
-                System.out.println("no");
-                return false;
-            }
+
+        if(BFS(0)){
+            System.out.println(0);
+            System.out.println("pass");
+        }
+        else {
+            System.out.println("no");
+            return false;
         }
         return true;
     }
 
-    public boolean BFS (Integer vertex) {
+    public boolean BFS (Integer vertice) {
         LinkedList<Integer> queue = new LinkedList<Integer>();
         boolean[] visited = new boolean[adjList.length];
 
         //adding count,vertex,and boolean for the starting point.
         int count = 1;
-        queue.add(vertex);
-        visited[vertex] = true;
+        int n; //next vertice in a list
+        queue.add(vertice);
+        visited[vertice] = true;
 
 
-        while (queue.size() != 0) {
-            vertex = queue.remove();
-            Iterator<Integer> iterator = adjList[vertex].listIterator();
+        Iterator<Integer> iterator;
+        while (!queue.isEmpty()) {
+            vertice = queue.remove();
+            iterator = adjList[vertice].iterator();
 
             while(iterator.hasNext()) {
-                int n = iterator.next();
+                n = iterator.next();
+                if(visited[n] == true || queue.contains(n)) {
+                    continue;
+                }
                 if(visited[n]==false) {
                     visited[n] = true;
                     queue.add(n);
@@ -82,8 +93,8 @@ class Graph
 
         //check second property: each vertex must have two vertices
         for(int i=0; i < vNum; i++) {
-            System.out.println(vNum);
-            System.out.println(Arrays.toString(adjList[i].toArray()));
+            //System.out.println(i);
+            //System.out.println(Arrays.toString(adjList[i].toArray()));
             if(adjList[i].size() != 2) {
                 return false;
             }
